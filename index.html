@@ -22,6 +22,9 @@
             <input type="text" v-on:input="getTitle">
             <!-- To manage links in Vue you must use his own language. Use a directive such as v-bind-->
             <p>{{ sayHello() }} | <a v-bind:href="link">Google</a></p>
+            <hr>
+            <!-- If we need to render Html you can do it with the v-html directive. Make sure to sanitize to prevent shit happens -->
+            <p v-html="finishedLink"></p>
         </div>
         
         <script>
@@ -31,7 +34,8 @@
                 data: {
                     title: "Hello World",
                     // Add the link to the data object
-                    link: "https://www.google.com"
+                    link: "https://www.google.com",
+                    finishedLink: "<a href='http://facebook.com'>Facebook</a>"
                 },
                 methods: {
                     getTitle: function(event){
