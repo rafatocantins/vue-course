@@ -19,6 +19,7 @@
 
         <div id="app">
 
+            <!-- Bonus) Fill the <h1> below with your Name - using Interpolation - and remain with the first value if a method get's called -->
             <h1 v-once>{{ name }}</h1>
 
             <hr>
@@ -27,9 +28,13 @@
 
             <hr>
 
+            <!-- Bonus) Another way to output your age, multiplied by 3 -->
+            <p>{{ ageTimes() }}</p>
+
+            <hr>
 
             <!-- 2) Output your age, multiplied by 3 -->
-            <p>{{ ageTimes() }}</p>
+            <p>{{ age * 3 }}</p>
 
             <hr>
             <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
@@ -42,7 +47,7 @@
             </div>
 
             <hr>
-            <!-- 5) Change your name with an input -->
+            <!-- Bonus) Change your name with an input method -->
             <div>
                 <input type="text" v-on:input="changeName">
             </div>
