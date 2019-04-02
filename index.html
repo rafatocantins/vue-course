@@ -18,6 +18,7 @@
         <![endif]-->
 
         <div id="app">
+            <h1 v-once>{{ title }}</h1>
             <input type="text" v-on:input="getTitle">
             <!-- To manage links in Vue you must use his own language. Use a directive such as v-bind-->
             <p>{{ sayHello() }} | <a v-bind:href="link">Google</a></p>
