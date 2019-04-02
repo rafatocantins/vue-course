@@ -12,3 +12,4 @@
         - v-on
         - v-bind - to bind the data to the html ex: 'href'
         - v-once - if we for some case need to show only the initial value
+        - v-html - for rendering html content from data
