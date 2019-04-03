@@ -18,32 +18,49 @@
         <![endif]-->
 
         <div id="app">
-            <h1 v-once>{{ title }}</h1>
-            <input type="text" v-on:input="getTitle">
-            <!-- To manage links in Vue you must use his own language. Use a directive such as v-bind-->
-            <p>{{ sayHello() }} | <a v-bind:href="link">Google</a></p>
+            <h2>Setting Styles Dinamically</h2>
+            <div>
+                <!-- use of :style to bind the attribute 'backgroundColor' to my propertie 'color' -->
+                <div class="demo" :style="{backgroundColor: color}"></div>
+                <div class="demo" :style="myStyle"></div>
+                <!-- we can set our object and bind the attribute height with our width propertie so it changes dinamically -->
+                <div class="demo" :style="[ myStyle , { height: width + 'px' } ]"></div>
+            </div>
             <hr>
-            <!-- If we need to render Html you can do it with the v-html directive. Make sure to sanitize to prevent shit happens -->
-            <p v-html="finishedLink"></p>
+            <!-- with the v-model we can change and update the color propertie -->
+            <input type="text" v-model="color">
+            <!-- with the v-model we can change and update the width propertie -->
+            <input type="text" v-model="width">
+            <input type="text" v-model="border">
         </div>
+
+        <style>
+            .demo{
+                background-color: gray;
+                width: 100px;
+                height: 100px;
+                display: inline-block;
+                margin-right: 5px;
+            }
+        </style>
         
         <script>
 
             new Vue({
                 el: '#app',
                 data: {
-                    title: "Hello World",
-                    // Add the link to the data object
-                    link: "https://www.google.com",
-                    finishedLink: "<a href='http://facebook.com'>Facebook</a>"
+                    color: 'gray',
+                    width: 100,
+                    border: 0
                 },
-                methods: {
-                    getTitle: function(event){
-                        this.title = event.target.value;
-                    },
-                    sayHello: function(){
-                        //return 'Hello'; RETURN THE STRING HELLO   
-                        return this.title; // this.title can access the data 
+                // add a computed method to get all the info
+                computed: {
+                    myStyle: function() {
+                        return {
+                            backgroundColor: this.color,
+                            width: this.width + 'px',
+                            borderRadius: this.border + 'px'
+                        }
                     }
                 }
             });
