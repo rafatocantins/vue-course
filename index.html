@@ -19,7 +19,8 @@
 
         <div id="app">
             <!-- v-on directive to add a listener event Click | mouseenter | mouseleave -->
-            <button v-on:click="increase">click me</button>
+            <!-- Pass an argument to my event and and event || beware the event is protected the name is important  -->
+            <button v-on:click="increase(2, $event)">click me</button>
             <p>{{ counter }}</p>
             <!-- add an event called updateCoordinates on mouse move -->
             <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} | {{ y }}</p>
@@ -36,8 +37,9 @@
                 },
                 methods: {
                     // add the increment function
-                    increase: function() {
-                        this.counter++;
+                    // add an argument and an event
+                    increase: function(step, event) {
+                        this.counter += step;
                     },
                     // add the coordinates using the event default data
                     updateCoordinates: function(event) {
