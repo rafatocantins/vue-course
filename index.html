@@ -21,6 +21,8 @@
             <!-- v-on directive to add a listener event Click | mouseenter | mouseleave -->
             <button v-on:click="increase">click me</button>
             <p>{{ counter }}</p>
+            <!-- add an event called updateCoordinates on mouse move -->
+            <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} | {{ y }}</p>
         </div>
         
         <script>
@@ -28,11 +30,19 @@
             new Vue({
                 el: '#app',
                 data: {
-                    counter: 0
+                    counter: 0,
+                    x: 0,
+                    y: 0
                 },
                 methods: {
+                    // add the increment function
                     increase: function() {
                         this.counter++;
+                    },
+                    // add the coordinates using the event default data
+                    updateCoordinates: function(event) {
+                        this.x = event.clientX;
+                        this.y = event.clientY;
                     }
                 }
             });
