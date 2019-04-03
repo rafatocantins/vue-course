@@ -54,3 +54,9 @@
         - Vue will recognize the directives in a efficient and shorthanded way
             - v-on | @ | ex: <button @click>
             - v-bind | :  ex: <p :href>
+            ´
+# Reactive Properties Exercise
+
+    - Check branch reactive-properties-exercise
+        1) Show a "result" of 'not there yet' as long as "value" is not equal to 37 - you can change "value" with the buttons. Print 'done' once you did it
+        2) Watch for changes in the "result" and reset the "value" after 5 seconds (hint: setTimeout(..., 5000)
