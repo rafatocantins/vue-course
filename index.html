@@ -20,23 +20,45 @@
         <div id="app">
             <!-- v-on directive to add a listener event Click | mouseenter | mouseleave -->
             <!-- Pass an argument to my event and and event || beware the event is protected the name is important  -->
-            <button v-on:click="increase(2, $event)">click me</button>
+            <button v-on:click="increase(2, $event)">click me with parameters</button>
 
             <!-- We can write javascript code in the templates. it helps to isolate some of my listener events  -->
             <button v-on:click="counter++" >Increment my code in template</button>
+
+            <button v-on:click="counter--" >Decrement</button>
+
+            <button v-on:click="secondCounter++">Increase Second Counter</button>
+
+            <p>Counter: {{ counter }} | {{ secondCounter }}</p>
             <!-- I can add calculus and conditions within template -->
             <p>{{ counter * 2 > 10 ? 'Greater than 10' : 'Smaller than 10'}}</p>
+
+            <!-- Change with computed Properties -->
+            <h4>{{ result() }} - {{ output }}</h4>
+            <hr>
             <!-- add an event called updateCoordinates on mouse move -->
             <p v-on:mousemove="updateCoordinates">
                 Coordinates: {{ x }} | {{ y }} -
                 <!-- Modify an event by putting a . after the event listener we want to stop || Its the same as a function  to stop.Propagation() -->
                 <span v-on:mousemove.stop="">DEAD SPOT</span>
             </p>
+
+            <hr>
             <!-- Listen to a keyword event || the same as the modifier event we can define the keyword putting a . after the event listener-->
             <input type="text" v-on:input="changeName" v-on:keyup.enter="alertMe">
-            <h1>{{ name }}</h1>
+            <h2>{{ name }}</h2>
             <!-- Add condition check for name -->
-            <h1>{{ name === 'Rafael' || name === 'Rodrigo' ? 'That is my name' : 'That is NOT my name' }}</h1>
+            <h2>{{ name === 'Rafael' || name === 'Rodrigo' ? 'That is my name' : 'That is NOT my name' }}</h2>
+
+            <!-- Use Two Way Binding event using v-model || v-model allows to insert the data and update the same data  -->
+            <hr>
+            <div>
+                <h1>Two way Binding</h1>
+                <input type="text" v-model="brotherName">
+                <h2>My family name is {{ brotherName }}</h2>
+            </div>
+
+            <hr>
         </div>
         
         <script>
@@ -47,7 +69,25 @@
                     name: 'Rafael',
                     counter: 0,
                     x: 0,
-                    y: 0
+                    y: 0,
+                    brotherName: 'Cabrita',
+                    secondCounter: 0
+                },
+                // watches the propertie and waits to change it's value
+                watch: {
+                    counter: function(value) {
+                        var vm =  this;
+                        setTimeout(function(){
+                            vm.counter = 0;
+                        },2000);
+                    }
+                },
+                // analyses the code and check if the propertie is getting used or not
+                computed: {
+                    output: function() {
+                        console.log('computed');
+                        return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+                    }
                 },
                 methods: {
                     // add the increment function
@@ -64,7 +104,11 @@
                         alert('My name is ' + this.name);
                     },
                     changeName: function(event) {
+                        console.log('method');
                         this.name = event.target.value;
+                    },
+                    result: function() {
+                        return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
                     }
                 }
             });

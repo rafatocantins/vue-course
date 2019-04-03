@@ -45,3 +45,10 @@
 # Listening to Events - Part 2
 
     - Writing Javascript Code in Templates
+    - Using two-way-binding - v-model
+    - Reacting to changes with computed properties
+    - The watch object - An alternative to computed
+    - The shorthand code 
+        - Vue will recognize the directives in a efficient and shorthanded way
+            - v-on | @ | ex: <button @click>
+            - v-bind | :  ex: <p :href>
