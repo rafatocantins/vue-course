@@ -21,7 +21,11 @@
             <!-- v-on directive to add a listener event Click | mouseenter | mouseleave -->
             <!-- Pass an argument to my event and and event || beware the event is protected the name is important  -->
             <button v-on:click="increase(2, $event)">click me</button>
-            <p>{{ counter }}</p>
+
+            <!-- We can write javascript code in the templates. it helps to isolate some of my listener events  -->
+            <button v-on:click="counter++" >Increment my code in template</button>
+            <!-- I can add calculus and conditions within template -->
+            <p>{{ counter * 2 > 10 ? 'Greater than 10' : 'Smaller than 10'}}</p>
             <!-- add an event called updateCoordinates on mouse move -->
             <p v-on:mousemove="updateCoordinates">
                 Coordinates: {{ x }} | {{ y }} -
@@ -31,6 +35,8 @@
             <!-- Listen to a keyword event || the same as the modifier event we can define the keyword putting a . after the event listener-->
             <input type="text" v-on:input="changeName" v-on:keyup.enter="alertMe">
             <h1>{{ name }}</h1>
+            <!-- Add condition check for name -->
+            <h1>{{ name === 'Rafael' || name === 'Rodrigo' ? 'That is my name' : 'That is NOT my name' }}</h1>
         </div>
         
         <script>
