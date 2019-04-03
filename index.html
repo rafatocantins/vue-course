@@ -18,13 +18,22 @@
         <![endif]-->
 
         <div id="app">
-            <h1 v-once>{{ title }}</h1>
-            <input type="text" v-on:input="getTitle">
-            <!-- To manage links in Vue you must use his own language. Use a directive such as v-bind-->
-            <p>{{ sayHello() }} | <a v-bind:href="link">Google</a></p>
-            <hr>
-            <!-- If we need to render Html you can do it with the v-html directive. Make sure to sanitize to prevent shit happens -->
-            <p v-html="finishedLink"></p>
+            <!-- 1) Show an alert when the Button gets clicked -->
+            <div>
+                <button v-on:click="alertMe">Show Alert</button>
+            </div>
+            <!-- 2) Listen to the "keydown" event and store the value in a data property (hint: event.target.value gives you the value) -->
+            <!-- use of modifyers and event data-->
+            <!--  there's a delay on updating the value on v-on. Further wee'll use v-model -->
+            <div>
+                <input type="text" v-on:keydown="test($event)">
+                <p>{{ value }}</p>
+            </div>
+            <!-- 3) Adjust the example from 2) to only fire if the "key down" is the ENTER key -->
+            <div>
+                <input type="text" v-on:keydown.enter="value = $event.target.value">
+                <p>{{ value }}</p>
+            </div>
         </div>
         
         <script>
@@ -32,18 +41,15 @@
             new Vue({
                 el: '#app',
                 data: {
-                    title: "Hello World",
-                    // Add the link to the data object
-                    link: "https://www.google.com",
-                    finishedLink: "<a href='http://facebook.com'>Facebook</a>"
+                    value: ''
                 },
                 methods: {
-                    getTitle: function(event){
-                        this.title = event.target.value;
+                    alertMe: function() {
+                        alert('Alert Me');
                     },
-                    sayHello: function(){
-                        //return 'Hello'; RETURN THE STRING HELLO   
-                        return this.title; // this.title can access the data 
+                    test ($event) {
+                        console.log($event)
+                        this.value = $event.target.val
                     }
                 }
             });
