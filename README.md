@@ -60,3 +60,9 @@
     - Check branch reactive-properties-exercise
         1) Show a "result" of 'not there yet' as long as "value" is not equal to 37 - you can change "value" with the buttons. Print 'done' once you did it
         2) Watch for changes in the "result" and reset the "value" after 5 seconds (hint: setTimeout(..., 5000)
+
+# Dinamic Styling with CSS Classes - Basics
+
+    - Check branch dinamic-styling-classes
+    - bind classes with data properties | ex: :bind="{class: data or event}"
+    - using Objects

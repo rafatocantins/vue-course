@@ -18,32 +18,66 @@
         <![endif]-->
 
         <div id="app">
-            <h1 v-once>{{ title }}</h1>
-            <input type="text" v-on:input="getTitle">
-            <!-- To manage links in Vue you must use his own language. Use a directive such as v-bind-->
-            <p>{{ sayHello() }} | <a v-bind:href="link">Google</a></p>
-            <hr>
-            <!-- If we need to render Html you can do it with the v-html directive. Make sure to sanitize to prevent shit happens -->
-            <p v-html="finishedLink"></p>
+
+            <h2>Bind Class</h2>
+            <div>
+                <!-- Bind the class blue,green,red to the propertie attachedRed so the class changes when event happens -->
+                <!-- we can get more dinamic without writting it in the code -->
+
+                <!-- <div 
+                class="demo" 
+                @click="attachedRed = !attachedRed" 
+                :class="{red: attachedRed, blue: !attachedRed}"
+                ></div> -->
+                
+                <!-- add the computed object to my block -->
+                <div 
+                class="demo" 
+                @click="attachedRed = !attachedRed" 
+                :class="divClasses"
+                ></div>
+                <!-- on click whe are saying that the value is changing between false to true -->
+                <div class="demo" @click="attachedGreen = !attachedGreen" :class="{green: attachedGreen}"></div>
+                <div class="demo" @click="attachedBlue = !attachedBlue" :class="{blue: attachedBlue}"></div>
+            </div>
+            
         </div>
+
+        <style scoped>
+            .demo{
+                background-color: grey;
+                width: 100px;
+                height: 100px;
+                display: inline-block;
+                margin-right: 5px;
+            }
+            .red{
+                background-color: red;
+            }
+            .green{
+                background-color: green;
+            }
+            .blue{
+                background-color: blue;
+            }
+        </style>
         
         <script>
 
             new Vue({
                 el: '#app',
                 data: {
-                    title: "Hello World",
-                    // Add the link to the data object
-                    link: "https://www.google.com",
-                    finishedLink: "<a href='http://facebook.com'>Facebook</a>"
+                    attachedRed: false,
+                    attachedGreen: false,
+                    attachedBlue: false
                 },
-                methods: {
-                    getTitle: function(event){
-                        this.title = event.target.value;
-                    },
-                    sayHello: function(){
-                        //return 'Hello'; RETURN THE STRING HELLO   
-                        return this.title; // this.title can access the data 
+                computed: {
+                    // create a computed method to return the parameters I desire
+                    divClasses: function() {
+                        return {
+                            red: this.attachedRed,
+                            blue: !this.attachedRed
+                        }
                     }
                 }
             });
