@@ -66,3 +66,4 @@
     - Check branch dinamic-styling-classes
     - bind classes with data properties | ex: :bind="{class: data or event}"
     - using Objects
+    - using Names

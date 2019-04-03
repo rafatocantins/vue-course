@@ -29,7 +29,7 @@
                 @click="attachedRed = !attachedRed" 
                 :class="{red: attachedRed, blue: !attachedRed}"
                 ></div> -->
-                
+
                 <!-- add the computed object to my block -->
                 <div 
                 class="demo" 
@@ -37,8 +37,13 @@
                 :class="divClasses"
                 ></div>
                 <!-- on click whe are saying that the value is changing between false to true -->
-                <div class="demo" @click="attachedGreen = !attachedGreen" :class="{green: attachedGreen}"></div>
-                <div class="demo" @click="attachedBlue = !attachedBlue" :class="{blue: attachedBlue}"></div>
+                <div class="demo" :class="{green: attachedRed}"></div>
+                <div class="demo" :class="color"></div>
+
+                <hr>
+                <!-- Now I'm changing the class name with an input. at the same time that vue updates  -->
+                <input type="text" v-model="color">
+                <button @click="console">Console me</button>
             </div>
             
         </div>
@@ -69,7 +74,7 @@
                 data: {
                     attachedRed: false,
                     attachedGreen: false,
-                    attachedBlue: false
+                    color: 'blue'
                 },
                 computed: {
                     // create a computed method to return the parameters I desire
@@ -78,6 +83,11 @@
                             red: this.attachedRed,
                             blue: !this.attachedRed
                         }
+                    }
+                },
+                methods: {
+                    console: function(){
+                        console.log(this.color);
                     }
                 }
             });
