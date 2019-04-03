@@ -28,6 +28,7 @@
 
 # Listening to Events - Part 1
 
+    - check branch listening-events
     - Add a button and use the v-on directive to listen to an event
         - You can you click | mouseenter | mouseleave etc...   
     - Getting Event data from the Event Object  
