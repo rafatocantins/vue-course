@@ -10,7 +10,7 @@
 
     - List of directives 
         - v-on
-        - v-bind - to bind the data to the html ex: 'href'
+        - v-bind - to bind the data to the html ex: 'href', 'src'
         - v-once - if we for some case need to show only the initial value
         - v-html - for rendering html content from data
 
@@ -45,3 +45,10 @@
 # Listening to Events - Part 2
 
     - Writing Javascript Code in Templates
+    - Using two-way-binding - v-model
+    - Reacting to changes with computed properties
+    - The watch object - An alternative to computed
+    - The shorthand code 
+        - Vue will recognize the directives in a efficient and shorthanded way
+            - v-on | @ | ex: <button @click>
+            - v-bind | :  ex: <p :href>
