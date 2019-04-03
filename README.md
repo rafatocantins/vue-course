@@ -25,3 +25,12 @@
         Bonus) Fill the <h1> below with your Name - using Interpolation - and remain with the first value if a method get's called
         Bonus) Another way to output your age, multiplied by 3
         Bonus) Change your name with an input method
+
+# Listening to Events
+
+    - Add a button and use the v-on directive to listen to an event
+        - You can you click | mouseenter | mouseleave etc...   
+    - Getting Event data from the Event Object  
+    - Passing my own arguments with events
+    - Modifying an event - with event modifiers
+    - Listening to Keyboard Events 
