@@ -23,7 +23,14 @@
             <button v-on:click="increase(2, $event)">click me</button>
             <p>{{ counter }}</p>
             <!-- add an event called updateCoordinates on mouse move -->
-            <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} | {{ y }}</p>
+            <p v-on:mousemove="updateCoordinates">
+                Coordinates: {{ x }} | {{ y }} -
+                <!-- Modify an event by putting a . after the event listener we want to stop || Its the same as a function  to stop.Propagation() -->
+                <span v-on:mousemove.stop="">DEAD SPOT</span>
+            </p>
+            <!-- Listen to a keyword event || the same as the modifier event we can define the keyword putting a . after the event listener-->
+            <input type="text" v-on:input="changeName" v-on:keyup.enter="alertMe">
+            <h1>{{ name }}</h1>
         </div>
         
         <script>
@@ -31,6 +38,7 @@
             new Vue({
                 el: '#app',
                 data: {
+                    name: 'Rafael',
                     counter: 0,
                     x: 0,
                     y: 0
@@ -45,6 +53,12 @@
                     updateCoordinates: function(event) {
                         this.x = event.clientX;
                         this.y = event.clientY;
+                    },
+                    alertMe: function() {
+                        alert('My name is ' + this.name);
+                    },
+                    changeName: function(event) {
+                        this.name = event.target.value;
                     }
                 }
             });
