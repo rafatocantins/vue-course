@@ -34,3 +34,10 @@
     - Passing my own arguments with events
     - Modifying an event - with event modifiers
     - Listening to Keyboard Events 
+
+# Exercise Two - Listening Events
+
+    - Check branch Listening events exercise
+        1) Show an alert when the Button gets clicked
+        2) Listen to the "keydown" event and store the value in a data property (hint: event.target.value gives you the value)
+        3) Adjust the example from 2) to only fire if the "key down" is the ENTER key
