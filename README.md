@@ -28,7 +28,7 @@
 
 # Listening to Events - Part 1
 
-    - check branch listening-events
+    - Check branch listening-events
     - Add a button and use the v-on directive to listen to an event
         - You can you click | mouseenter | mouseleave etc...   
     - Getting Event data from the Event Object  
@@ -45,6 +45,7 @@
 
 # Listening to Events - Part 2
 
+    - Check branch listening-events
     - Writing Javascript Code in Templates
     - Using two-way-binding - v-model
     - Reacting to changes with computed properties
