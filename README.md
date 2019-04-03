@@ -67,3 +67,9 @@
     - bind classes with data properties | ex: :bind="{class: data or event}"
     - using Objects
     - using Names
+
+# Setting Styles Dinamically ( without using css classes )
+
+    - Check branch setting-styles-dinamically
+    - use of binding directive :style to change the styles automatically
+    - Setting Elements with the Array 
