@@ -73,3 +73,7 @@
     - Check branch setting-styles-dinamically
     - use of binding directive :style to change the styles automatically
     - Setting Elements with the Array 
+
+# Stylling Exercises
+
+    - Check branch stylling-exercises
