@@ -26,7 +26,7 @@
         Bonus) Another way to output your age, multiplied by 3
         Bonus) Change your name with an input method
 
-# Listening to Events
+# Listening to Events - Part 1
 
     - Add a button and use the v-on directive to listen to an event
         - You can you click | mouseenter | mouseleave etc...   
@@ -41,3 +41,7 @@
         1) Show an alert when the Button gets clicked
         2) Listen to the "keydown" event and store the value in a data property (hint: event.target.value gives you the value)
         3) Adjust the example from 2) to only fire if the "key down" is the ENTER key
+
+# Listening to Events - Part 2
+
+    - Writing Javascript Code in Templates
