@@ -97,3 +97,7 @@
 
 
 # Components Exercise and Vue-cli
+
+    -Check branch component-exercise
+        - Setup vue-cli
+        - Add components 
