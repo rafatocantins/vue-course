@@ -73,3 +73,13 @@
     - Check branch setting-styles-dinamically
     - use of binding directive :style to change the styles automatically
     - Setting Elements with the Array 
+
+# Stylling Exercises
+
+    - Check branch stylling-exercises
+        1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below)
+        2) Create a couple of CSS classes and attach them via the array syntax
+        3) Let the user enter a class (create some example classes) and attach it
+        4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes 
+        5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.
+        6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button.
