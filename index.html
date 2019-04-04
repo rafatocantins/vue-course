@@ -21,20 +21,20 @@
             <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
             <div>
                 <button @click="startEffect">Start Effect</button>
-                <div id="effect" :style="attachedWidth = !attachedWidth"></div>
+                <div id="effect" :class="effectClasses"></div>
             </div>
             <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
-            <div>I got no class :(</div>
+            <div :class="[ float, 'blue', 'text-color' ]">I got no class :(</div>
             <!-- 3) Let the user enter a class (create some example classes) and attach it -->
             <div>
-                <input type="text">
-                <div></div>
+                <input type="text" v-model="userClass">
+                <div :class="[{visible: true}, userClass]">change color</div>
             </div>
             <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
             <div>
-                <input type="text">
-                <input type="text">
-                <div></div>
+                <input type="text" v-model="userClass">
+                <input type="text" v-model="isVisible">
+                <div :class="[{visible: isVisible}, userClass]"></div>
             </div>
             <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
             <div>
@@ -43,8 +43,8 @@
             </div>
             <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
             <div>
-                <button>Start Progress</button>
-                <div></div>
+                <button @click="startProgress">Start Progress</button>
+                <div v-bind:class="['progress-bar']" v-bind:style="progressBar"></div>
             </div>
         </div>
 
@@ -64,6 +64,26 @@
             background-color: gray;
             width: 50px !important;
             }
+
+            .blue {
+            background-color: blue;
+            }
+            .float {
+            float: left;
+            }
+            .text-color {
+            color: yellow;
+            }
+            .visible {
+            width: 100px;
+            height: 50px;
+            }
+            .progress-bar {
+            width: 200px;
+            height: 20px;
+            border: 1px solid black;
+            }
+
         </style>
         
         <script>
@@ -71,11 +91,34 @@
             new Vue({
                 el: '#app',
                 data: {
-                    attachedWidth: false
+                    effectClasses: {
+                        highlight: true,
+                        shrink: false
+                    },
+                    float: 'float',
+                    isVisible: true,
+                    userClass: '',
+                    progressBar: {
+                        width: '0px',
+                        backgroundColor:'red'
+                    }
                 },
-                computed: {
+                methods: {
                     startEffect: function() {
-                        
+                        var vm = this;
+                        setInterval(function(){
+                            vm.effectClasses.highlight = !vm.effectClasses.highlight;
+                            vm.effectClasses.shrink = !vm.effectClasses.shrink
+                        }, 1000)
+                    },
+                    startProgress: function() {
+                        var vm = this;
+                        var width = 0;
+
+                        setInterval(function(){
+                            width = width + 10;
+                            vm.progressBar.width = width + 'px';
+                        }, 500)
                     }
                 }
             });
