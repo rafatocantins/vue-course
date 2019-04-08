@@ -9,6 +9,11 @@ Vue.use(VueRouter)
 // Import our store.js containing all the modules
 import store from './store/store'
 
+// Get a filter from vue add it with a pipe
+Vue.filter('currency', (value) => {
+  return '$' +value.toLocaleString()
+})
+
 const router = new VueRouter({
   mode: 'history',
   routes
