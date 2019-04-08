@@ -14,9 +14,12 @@
                         v-model="quantity">
                 </div>
                 <div class="float-right">
+                    <!-- use the disable attribute to shut the functionallity for undesire events -->
+                    <!-- Number.isInteger() not functionally correct browser related issue - add a method to check if it's Integer -->
                     <button 
                     class="btn btn-success"
                     @click="buyStock()"
+                    :disabled="quantity <= 0 || !isInt(quantity)"
                     >Buy
                     </button>
                 </div>
@@ -42,6 +45,9 @@ export default {
             }
             console.log(order);
             this.quantity = 0;
+        },
+        isInt(n) {
+            return n % 1 === 0
         }
     }
 }
