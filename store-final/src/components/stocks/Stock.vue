@@ -12,7 +12,8 @@
                         type="number"
                         class="form-control"
                         placeholder="Quantity"
-                        v-model.number="quantity">
+                        v-model.number="quantity"
+                        :class="{'danger': noFunds}">
                 </div>
                 <div class="float-right">
                     <!-- use the disable attribute to shut the functionallity for undesire events -->
@@ -20,8 +21,8 @@
                     <button 
                     class="btn btn-success"
                     @click="buyStock()"
-                    :disabled="quantity <= 0 || !isInt(quantity)"
-                    >Buy
+                    :disabled="noFunds || quantity <= 0 || !isInt(quantity)"
+                    >{{noFunds ? 'No Funds' : 'Buy'}}
                     </button>
                 </div>
             </div>
@@ -35,6 +36,14 @@ export default {
     data() {
         return {
             quantity: 0
+        }
+    },
+    computed: {
+        funds() {
+            return this.$store.getters.funds
+        },
+        noFunds() {
+            return this.quantity * this.stock.price > this.funds
         }
     },
     methods: {
@@ -60,4 +69,10 @@ export default {
 .stock-view{
     margin-bottom: 30px;
 }
+.danger{
+    border: 3px solid red;
+    background-color: rgba(255,0,0,0.4);
+    color: white;
+}
+
 </style>

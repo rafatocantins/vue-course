@@ -11,7 +11,8 @@
                         type="number"
                         class="form-control"
                         placeholder="Quantity"
-                        v-model.number="quantity">
+                        v-model.number="quantity"
+                        :class="{'danger': noStock}">
                 </div>
                 <div class="float-right">
                     <!-- use the disable attribute to shut the functionallity for undesire events -->
@@ -19,8 +20,8 @@
                     <button 
                     class="btn btn-info"
                     @click="sellStock()"
-                    :disabled="quantity <= 0 || !isInt(quantity)"
-                    >Sell
+                    :disabled="noStock || quantity <= 0 || !isInt(quantity)"
+                    >{{noStock ? 'Insufficient quantity' : 'Sell'}}
                     </button>
                 </div>
             </div>
@@ -37,6 +38,11 @@ export default {
     data() {
         return {
             quantity: 0
+        }
+    },
+    computed: {
+        noStock() {
+            return this.quantity > this.stock.quantity
         }
     },
     methods: {
@@ -64,6 +70,12 @@ export default {
 <style scoped>
 .stock-view{
     margin-bottom: 30px;
+}
+
+.danger{
+    border: 3px solid red;
+    background-color: rgba(255,0,0,0.4);
+    color: white;
 }
 </style>
 
