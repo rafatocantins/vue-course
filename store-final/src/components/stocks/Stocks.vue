@@ -11,20 +11,14 @@
 // import my stock component to handle the data
 import Stock from './Stock'
 export default {
-    data() {
-        return {
-            // get an array of stocks get an ID, a Name and a price
-            stocks: [
-                {id: 1, name: 'BMW', price: 110},
-                {id: 2, name: 'Ferrari', price: 125},
-                {id: 3, name: 'Google', price: 89},
-                {id: 4, name: 'Amazon', price: 95}
-
-            ]
-        }
-    },
     components: {
         appStock: Stock
+    },
+    // use the computed method to get the data // that's on getters
+    computed: {
+        stocks() {
+            return this.$store.getters.stocks;
+        }
     }
 }
 </script>
