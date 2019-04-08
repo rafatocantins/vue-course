@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.use(Vuelidate)
 
-export const serverBus = new Vue();
+// export const serverBus = new Vue();
 
 new Vue({
   el: '#app',

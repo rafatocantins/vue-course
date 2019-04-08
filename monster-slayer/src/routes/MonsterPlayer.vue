@@ -1,13 +1,13 @@
 <template>
-  <div id="monster-slayer"> 
+  <div id="monster-slayer" class="container"> 
     <div>
       <section class="row character">
         <!-- Start of user component -->
         <div class="col-sm-6 col">
           <h1 class="text-center">{{user.name}}</h1>
           <div class="wrapper">
-              <div class="image">
-                <img :src="user.image[1]">
+              <div class="image text-center">
+                <img :src="user.image">
               </div>
           </div>
           <div class="healthbar">
@@ -19,10 +19,10 @@
         <!-- End of user component -->
         <!-- Start of monster component -->
         <div class="col-sm-6 col">
-            <h1 class="text-center">MONSTER</h1>
+            <h1 class="text-center">{{monster.name}}</h1>
             <div class="wrapper">
-                <div class="image">
-                  <img :src="monster.image[0]">
+                <div class="image text-center">
+                  <img :src="monster.image">
                 </div>
             </div>
             <div class="healthbar">
@@ -63,7 +63,7 @@
 
 <script>
 import router from '../router'
-import { serverBus } from '../main';
+// import { serverBus } from '../main';
 
 export default {
   name: 'monster-player',  
@@ -71,21 +71,11 @@ export default {
     return {
       user: {
         name: '',
-        image: [
-          '/src/assets/images/user/bart.png',
-          '/src/assets/images/user/looney-chicken.png',
-          '/src/assets/images/user/mario.png',
-          '/src/assets/images/user/peter-griffin.png',
-          '/src/assets/images/user/spongebob.png'
-        ]
+        image: ''
       },
       monster: {
         name: '',
-        image: [
-          '/src/assets/images/monster/cookie-monster.png',
-          '/src/assets/images/monster/lizard.png',
-          '/src/assets/images/monster/predator.png'
-        ]
+        image: ''
       },
       userLife: 100,
       monsterLife: 100,
@@ -95,9 +85,13 @@ export default {
     }
   },
   created() {
-      serverBus.$on('userSelected', (name) =>{
-          this.user.name = name;
-      })
+      // set user name and image
+      this.user.name  = localStorage.getItem('userName')
+      this.user.image = localStorage.getItem('userImage')
+
+      // set monster name and image
+      this.monster.name = localStorage.getItem('monsterName')
+      this.monster.image = localStorage.getItem('monsterImage')
   },
   methods: {
     // Method to start the game
@@ -141,7 +135,7 @@ export default {
         isPlayer: false,
         isHealth: false,
         isSpecial: false,
-        text: 'The beast attacked you by ' + damage + ' points'
+        text: this.monster.name + ' attacked you by ' + damage + ' points'
       });
 
       if(this.confirmVictory()){
@@ -223,39 +217,50 @@ export default {
     // Method to calculate damage
     calculateDamage(min, max) {
         return Math.max(Math.floor(Math.random() * max) + 1, min);
-    },
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 
-#app{
-  padding-top: 25px;
+.main-title{
+    padding-top: 25px;
+    padding-bottom:10px;
+}
+
+.main-title h1{
+    -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: #febc28;
+   font-weight: 900;
+   color: black;
+   padding: 30px;
+}
+
+.UserSelect-box-title h2{
+    -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: #febc28;
 }
 
 .text-center {
     text-align: center;
 }
 
-.character{
-  position: relative;
-}
 
 .healthbar {
-    width: 80%;
-    height: 40px;
+    width: 60%;
+    height: 25px;
     background-color: #eee;
     margin: auto;
     transition: width 500ms;
+    margin-top: 25px;
+    border-radius: 10px;
 }
 
 .controls, .log {
     margin-top: 30px;
     text-align: center;
     padding: 10px;
-    border: 1px solid #ccc;
-    box-shadow: 0px 3px 6px #ccc;
 }
 
 .turn {
@@ -278,69 +283,83 @@ export default {
 .log ul .player-turn {
     color: white;
     background-color: green;
+    border-radius: 10px;
 }
 
 .log ul .monster-turn {
     color: white;
     background-color: red;
+    border-radius: 10px;
 }
 
 .log ul .health-turn {
     color: white;
     background-color: blue;
+    border-radius: 10px;
 }
 
 .log ul .special-turn {
     color: white;
     background-color: purple;
+    border-radius: 10px;
 }
 
 button {
-    font-size: 20px;
-    background-color: #eee;
-    padding: 12px;
-    box-shadow: 0 1px 1px black;
-    margin: 10px;
+    padding: 15px 25px;
+    border: 2px solid #febc28;
+    cursor:pointer;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #start-game {
-    background-color: #aaffb0;
+    background-color: black;
+    color: #febc28;
 }
 
 #start-game:hover {
-    background-color: #76ff7e;
+    background-color: rgba(254, 188, 40,.6);
 }
 
 #attack {
-    background-color: #ff7367;
+    background-color: black;
+    color: #febc28;
 }
 
 #attack:hover {
     background-color: #ff3f43;
+    color: black;
 }
 
 #special-attack {
-    background-color: #ffaf4f;
+    background-color: black;
+     color: #febc28;
 }
 
 #special-attack:hover {
     background-color: #ff9a2b;
+    color: black;
 }
 
 #heal {
-    background-color: #aaffb0;
+    background-color: black;
+     color: #febc28;
 }
 
 #heal:hover {
-    background-color: #76ff7e;
+    background-color: green;
+    color: black;
 }
 
 #give-up {
-    background-color: #ffffff;
+    background-color: black;
+     color: #febc28;
 }
 
 #give-up:hover {
     background-color: #c7c7c7;
+    color: black;
 }
 
 .image{
@@ -348,16 +367,24 @@ button {
 }
 
 .image img{
-  width: 100px;
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform:translateX(-50%);
+  width: 250px;
 }
 
 .wrapper{
   position: relative;
-  min-height: 220px;
+  padding: 40px 10px;
+    border: 4px solid #febc28;
+    border-radius: 50px;
+    overflow: hidden;
+    height: 430px;
+}
+
+.character h1{
+    -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: #febc28;
+   font-weight: 900;
+   color: black;
+   padding: 30px;
 }
 
 </style>

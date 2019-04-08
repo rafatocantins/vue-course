@@ -10,12 +10,14 @@ export default new Router({
     {
       path: '/',
       name: 'homepage',
-      component: Homepage
+      component: Homepage,
+      props:true
     },
     {
         path: '/monster-player',
         name: 'monster-player',
-        component: MonsterPlayer 
+        component: MonsterPlayer,
+        props: true
     }
   ],
   mode: 'history'
