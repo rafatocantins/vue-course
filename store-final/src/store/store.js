@@ -5,12 +5,15 @@ import Vuex from 'vuex'
 
 // import my stocks.js modules
 import stocks from './modules/stocks'
+// import my portfolio.js module
+import portfolio from './modules/portfolio'
 
 Vue.use(Vuex)
 
 // add a new Vuex store
 export default new Vuex.Store({
     modules: {
-        stocks
+        stocks,
+        portfolio
     }
 })

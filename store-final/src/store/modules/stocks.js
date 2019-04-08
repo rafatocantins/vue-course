@@ -22,8 +22,10 @@ const mutations = {
 // define our actions 
 
 const actions = {
+    // to buy stocks
     buyStock: ({commit}, order) => {
-        commit();
+        // commit the mutation you need to buy stocks / in this case the mutation is on portfolio module
+        commit('BUY_STOCK', order);
     },
     initStocks: ({commit}) => {
         // set our data to our setStocks commit 
