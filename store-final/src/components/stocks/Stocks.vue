@@ -10,6 +10,7 @@
 <script>
 // import my stock component to handle the data
 import Stock from './Stock'
+
 export default {
     components: {
         appStock: Stock
