@@ -17,12 +17,14 @@ const mutations = {
         if(record) {
             // if exists update quantity
             record.quantity += quantity
+            console.log('its updating')
         }else{
             // if not create a new object
             state.stocks.push({
                 id: stockId,
                 quantity: quantity
             })
+            console.log('it is pushing')
         }
         // update my funds when buying
         state.funds -= stockPrice * quantity

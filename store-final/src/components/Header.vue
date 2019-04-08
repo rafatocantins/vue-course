@@ -11,8 +11,7 @@
                         <router-link to="/portfolio" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Portfolio</a></router-link>
                         <router-link to="/stocks" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Stocks</a></router-link>
                     </ul>
-                    <strong class="navbar-text navbar-right nav-item">Funds: {{ funds }}</strong>
-                    <span class="navbar-text nav-item"><a class="nav-link" href="#">End Day</a></span>
+                    <li class="nav navbar-text"><a class="" href="#">End Day</a></li>
                     <li class="dropdown nav-item" style="list-style: none;">
                         <a 
                             href="" 
@@ -26,6 +25,7 @@
                             <li><a href="">Load Data</a></li>
                         </ul>
                     </li>
+                    <strong class="nav navbar-text navbar-right nav-item">Funds: {{ funds }}</strong>
                 </div>
             </div>
         </nav>

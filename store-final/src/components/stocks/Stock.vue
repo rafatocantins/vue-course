@@ -7,11 +7,12 @@
             </div>
             <div class="card-body">
                 <div class="float-left">
+                    <!-- add an attribute to my v-model to act like a number -->
                     <input 
                         type="number"
                         class="form-control"
                         placeholder="Quantity"
-                        v-model="quantity">
+                        v-model.number="quantity">
                 </div>
                 <div class="float-right">
                     <!-- use the disable attribute to shut the functionallity for undesire events -->
