@@ -32,6 +32,7 @@
 </template>
 
 <script>
+// import my mapActions
 import {mapActions} from 'vuex'
 
 export default {
@@ -41,10 +42,12 @@ export default {
         },
     },
     methods: {
+        // get the randomizeStocks from my module actions
         ...mapActions([
             'randomizeStocks'
         ]),
         endDay() {
+            // call the method from the actions
             this.randomizeStocks();
         }
     }

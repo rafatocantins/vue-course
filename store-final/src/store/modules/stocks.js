@@ -15,6 +15,7 @@ const mutations = {
         state.stocks = stocks;
     },
     'RND_STOCKS' (state) {
+        // add a function to get random prices
         state.stocks.forEach(stock =>{
             stock.price = Math.round(stock.price * (1 + Math.random() - 0.5))
         })
@@ -34,6 +35,7 @@ const actions = {
         commit('SET_STOCKS', stocks);
     },
     randomizeStocks: ({commit}) => {
+        // commit the rnd_stocks from mutations
         commit('RND_STOCKS')
     }
 }
