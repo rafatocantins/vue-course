@@ -1,10 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import App from './App.vue'
 import { routes } from './router'
 
 // use Vue Router
 Vue.use(VueRouter)
+
+// use Vue Resource
+Vue.use(VueResource)
+
+// Set the options for the endpoint using vue-resources
+Vue.http.options.root = 'https://stock-trader-68c0c.firebaseio.com/';
 
 // Import our store.js containing all the modules
 import store from './store/store'

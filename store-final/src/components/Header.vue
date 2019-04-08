@@ -12,17 +12,19 @@
                         <router-link to="/stocks" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Stocks</a></router-link>
                     </ul>
                     <li class="nav navbar-text"><a class="" @click="endDay" href="#">End Day</a></li>
-                    <li class="dropdown nav-item" style="list-style: none;">
+                    <!-- Add dropdown on click -->
+                    <li class="dropdown nav-item" style="list-style: none;" @click="isMenuOpen = !isMenuOpen">
                         <a 
-                            href="" 
+                            href=""
+                            onclick="return false"
                             class="dropdown-toggle nav-link" 
                             role="button" 
                             data-toggle="dropdown" 
                             aria-haspopup="true" 
                             aria-expanded="false"> Save / Load <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="">Save Data</a></li>
-                            <li><a href="">Load Data</a></li>
+                        <ul class="dropdown-menu" :class="{'opened': isMenuOpen}">
+                            <li class="nav-item nav-link" id="save">Save Data</li>
+                            <li class="nav-item nav-link" id="load">Load Data</li>
                         </ul>
                     </li>
                     <strong class="nav navbar-text navbar-right nav-item">Funds: {{ funds | currency }}</strong>
@@ -36,6 +38,12 @@
 import {mapActions} from 'vuex'
 
 export default {
+    data() {
+        return {
+            // set data for dropdown
+            isMenuOpen: false
+        }
+    },
     computed: {
         funds() {
             return this.$store.getters.funds
@@ -57,5 +65,16 @@ export default {
 
 <style scoped>
 
+.opened {
+display: block !important;
+}
+
+#save{
+    cursor:pointer;
+}
+
+#load{
+    cursor:pointer;
+}
 
 </style>
